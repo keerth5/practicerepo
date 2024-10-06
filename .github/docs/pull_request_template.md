@@ -9,7 +9,7 @@
 ### Checklist
 
 - [ ] **Code Formatting**
-  - [ ] Code adheres to the project's style guide (PEP 8, etc.)
+  - [ ] Code adheres to the project's style guide ('black .' is run from project root)
   - [ ] No unnecessary print statements or debugging code
   - [ ] Proper docstrings and comments where necessary
 
@@ -17,30 +17,22 @@
   - [ ] Necessary unit tests have been added or modified
   - [ ] Tests pass locally (`pytest` or other test framework)
   - [ ] Coverage is adequate (aim for > 80%)
-  - [ ] Tests for edge cases and error handling are included
 
 - [ ] **FastAPI/REST API Checks**
   - [ ] Correct usage of FastAPI endpoints (e.g., `GET`, `POST`, `PUT`, `DELETE`)
-  - [ ] Proper validation of request/response models using Pydantic
+  - [ ] Proper validation of request/response models
   - [ ] Authentication and authorization (if applicable) is properly implemented
   - [ ] Appropriate HTTP status codes are used in responses (e.g., `200 OK`, `201 Created`, `400 Bad Request`, etc.)
-  - [ ] Endpoints and functionality are tested via integration or functional tests
 
 - [ ] **Documentation**
   - [ ] API documentation is up-to-date (use FastAPI's auto-generated docs or custom documentation)
-  - [ ] Relevant changes to the `README.md` or other documentation have been made
   - [ ] API endpoints are properly documented with descriptions and request/response models
-
-- [ ] **Code Quality & Performance**
-  - [ ] No duplicate code or unnecessary complexity
-  - [ ] Code is optimized for performance where possible (especially for critical paths)
-  - [ ] Database queries are optimized (if applicable)
 
 - [ ] **Security**
   - [ ] Input validation/sanitization is applied to prevent SQL injection or other vulnerabilities
   - [ ] Sensitive data handling (e.g., passwords, API keys) is done securely
 
-- [ ] **Deployment & Environment**
+- [ ] **Deployment & Environment** (if applicable)
   - [ ] Environment variables and configuration settings are properly handled
   - [ ] Docker support (if applicable): `Dockerfile` and `docker-compose.yml` are up to date
   - [ ] `Makefile` or other deployment scripts (if applicable) have been updated
