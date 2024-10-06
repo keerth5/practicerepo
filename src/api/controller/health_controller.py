@@ -4,7 +4,6 @@ from src.api.service.health_service import HealthService
 
 router = APIRouter()
 
-
 # Dependency injection
 def get_health_service():
     return HealthService()

@@ -4,4 +4,4 @@ from src.api.controller import health_controller
 
 app = FastAPI()
 
-app.include_router(health_controller.HealthController.router)
+app.include_router(health_controller.router)

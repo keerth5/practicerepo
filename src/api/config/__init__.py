@@ -47,13 +47,3 @@ def get_settings():
 
 
 settings = get_settings()
-
-# def get_db_connection():
-#     """
-#     Establishes a connection to the database, using the DATABASE_URL environment
-#     variable or the default setting for the current environment.
-
-#     Yields a psycopg2 connection object.
-#     """
-#     with psycopg2.connect(settings.DATABASE_URL) as conn:
-#         yield conn
