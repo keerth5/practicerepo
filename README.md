@@ -66,16 +66,11 @@ Use code with caution.
 
 Run the application:
 
-Bash
-python src/main.py  # Replace src/main.py with your actual script path
-Use code with caution.
+PowerShell
+uvicorn src.api.main:app --reload
 
-This will start the application. The specific behavior will depend on your project's functionality.
+This will start the application.
 
-Additional Notes
-
-For detailed usage instructions and examples, refer to the project's source code and any additional documentation provided.
-If your project includes a graphical user interface (GUI), the instructions for running it might differ. Refer to the specific code or documentation for details.
 Advanced Topics
 
 This section covers more advanced topics for experienced users.
