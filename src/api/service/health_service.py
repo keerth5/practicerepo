@@ -1,5 +1,6 @@
-from src.api.repository import user_repository
 from src.api.model.health_check import HealthCheckResponse
+from src.api.repository import user_repository
+
 
 class HealthService:
     def check_health(self):

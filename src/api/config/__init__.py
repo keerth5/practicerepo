@@ -1,5 +1,7 @@
 import os
-from src.api.config import default, local, qa, prod
+
+from src.api.config import default, local, prod, qa
+
 
 def get_settings():
     """
@@ -42,6 +44,7 @@ def get_settings():
                 setattr(settings, key, value)
 
     return settings
+
 
 settings = get_settings()
 

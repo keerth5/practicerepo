@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+
 from src.api.controller import health_controller
 
 app = FastAPI()

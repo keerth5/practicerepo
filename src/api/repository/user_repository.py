@@ -1,5 +1,7 @@
-from src.api.config.__init__ import settings
 import psycopg2
+
+from src.api.config.__init__ import settings
+
 
 def get_db_connection():
     """
@@ -9,6 +11,7 @@ def get_db_connection():
     Returns a psycopg2 connection object.
     """
     return psycopg2.connect(settings.DATABASE_URL)
+
 
 def check_db_connection():
     """
