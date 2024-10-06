@@ -1,20 +1,24 @@
-from src.api.repository.user_repository import check_db_connection
+from src.api.repository import user_repository
 from src.api.model.health_check import HealthCheckResponse
 
 class HealthService:
-    def __init__(self):
-        self.dependencies = {
-            "database": check_db_connection,
-        }
-
     def check_health(self):
         """
-        Performs a health check on all the service's dependencies.
+        Runs all health checks and returns a HealthCheckResponse object.
 
-        Returns a HealthCheckResponse containing the status of all the service's dependencies.
+        The response's status will be "OK" if all checks pass, otherwise it will
+        be "ERROR". The dependencies dictionary will contain the results of each
+        check.
+
+        :return: A HealthCheckResponse object
+        :rtype: HealthCheckResponse
         """
         response = HealthCheckResponse(status="OK")
-        for name, check_func in self.dependencies.items():
-            response.add_detail(name, check_func())
+        dependencies = {
+            "database": user_repository.check_db_connection(),
+        }
+        for name, status in dependencies.items():
+            if status != "Connected":
+                response.status = "ERROR"
+            response.add_detail(name, status)
         return response
-

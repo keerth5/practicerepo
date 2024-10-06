@@ -1,25 +1,24 @@
 import pytest
-from unittest.mock import MagicMock
-from src.api.service.health_service import HealthCheckService
+from unittest.mock import patch
+from src.api.service.health_service import HealthService
+from src.api.model.health_check import HealthCheckResponse
 
 @pytest.fixture
-def db_connection_mock():
-    return MagicMock(name="db_connection")
+def health_service():
+    return HealthService()
 
-def test_health_check_service_init(db_connection_mock):
-    service = HealthCheckService(db_connection_mock)
-    assert service.db == db_connection_mock
+def test_check_health_all_ok(health_service):
+    with patch('src.api.repository.user_repository.check_db_connection', return_value="Connected"):
+        response = health_service.check_health()
+        
+        assert isinstance(response, HealthCheckResponse)
+        assert response.status == "OK"
+        assert response.dependencies == {"database": "Connected"}
 
-def test_check_health_success(db_connection_mock):
-    service = HealthCheckService(db_connection_mock)
-    db_connection_mock.cursor.return_value.__enter__.return_value.execute.return_value = None
-    response = service.check_health()
-    assert response.status == "OK"
-    assert response.dependencies == {"database": "Connected"}
-
-def test_check_health_failure(db_connection_mock):
-    service = HealthCheckService(db_connection_mock)
-    db_connection_mock.cursor.return_value.__enter__.return_value.execute.side_effect = Exception("Mocked error")
-    response = service.check_health()
-    assert response.status == "OK"
-    assert response.dependencies == {"database": "Failed to connect to database: Mocked error"}
+def test_check_health_database_error(health_service):
+    with patch('src.api.repository.user_repository.check_db_connection', return_value="Failed to connect"):
+        response = health_service.check_health()
+        
+        assert isinstance(response, HealthCheckResponse)
+        assert response.status == "ERROR"
+        assert response.dependencies == {"database": "Failed to connect"}
