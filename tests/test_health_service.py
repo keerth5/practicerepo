@@ -19,7 +19,7 @@ def test_check_health_all_ok(health_service):
         response = health_service.check_health()
 
         assert isinstance(response, HealthCheckResponse)
-        assert response.status == "OK"
+        assert response.status == "Healthy"
         assert response.dependencies == {"database": "Connected"}
 
 
@@ -31,5 +31,5 @@ def test_check_health_database_error(health_service):
         response = health_service.check_health()
 
         assert isinstance(response, HealthCheckResponse)
-        assert response.status == "ERROR"
+        assert response.status == "Unhealthy"
         assert response.dependencies == {"database": "Failed to connect"}

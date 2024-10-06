@@ -14,12 +14,12 @@ class HealthService:
         :return: A HealthCheckResponse object
         :rtype: HealthCheckResponse
         """
-        response = HealthCheckResponse(status="OK")
+        response = HealthCheckResponse(status="Healthy")
         dependencies = {
             "database": user_repository.check_db_connection(),
         }
         for name, status in dependencies.items():
             if status != "Connected":
-                response.status = "ERROR"
+                response.status = "Unhealthy"
             response.add_detail(name, status)
         return response
