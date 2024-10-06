@@ -5,14 +5,15 @@ from src.api.repository import user_repository
 class HealthService:
     def check_health(self):
         """
-        Runs all health checks and returns a HealthCheckResponse object.
+        Checks the health of the User Service, by attempting to connect to
+        the configured database.
 
-        The response's status will be "OK" if all checks pass, otherwise it will
-        be "ERROR". The dependencies dictionary will contain the results of each
-        check.
+        Returns a HealthCheckResponse object, which contains the overall
+        service status and a dictionary of dependencies and their status.
 
-        :return: A HealthCheckResponse object
-        :rtype: HealthCheckResponse
+        A "Healthy" status indicates that all dependencies are connected
+        and available. An "Unhealthy" status means that one or more
+        dependencies are not available.
         """
         response = HealthCheckResponse(status="Healthy")
         dependencies = {
