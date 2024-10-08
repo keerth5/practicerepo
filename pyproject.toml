@@ -1,0 +1,37 @@
+[project]
+name = "user_service"
+version = "0.1.0"
+description = "Handles user-related information, including registration, login, profile management, and preferences."
+
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.2,<4"]
+
+[tool.black]
+   line-length = 88
+   target-version = ['py312']
+   include = '\.pyi?$'
+   extend-exclude = '''
+   /(
+     # directories
+     \.eggs
+     | \.git
+     | \.hg
+     | \.mypy_cache
+     | \.tox
+     | \.venv
+     | build
+     | dist
+   )/
+   '''
+
+[tool.pytest.ini_options]
+addopts = "-ra -q"
+asyncio_default_fixture_loop_scope = "function"
+minversion = "6.0"
+testpaths = [
+    "tests",
+]
+
+[tool.isort]
+profile = "black"
